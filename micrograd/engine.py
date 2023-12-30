@@ -11,7 +11,7 @@ class Value:
         self.grad = 0.0
 
     def __repr__(self):
-        return f"Value(data={self.data})"
+        return f"Value(data={self.data}, grad={self.grad})"
 
     def __add__(self, other):
         other = other if isinstance(other, Value) else Value(other)
