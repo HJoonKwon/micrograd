@@ -56,7 +56,8 @@ class Value:
         return (exp - negexp) / (exp + negexp)
 
     def relu(self):
-        pass
+        out = Value(0 if self.data < 0 else self.data, _children=(self,), _op="ReLU")
+        return out  
 
     def backward(self):
         pass

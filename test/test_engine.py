@@ -19,3 +19,4 @@ def test_ops():
     assert np.allclose(
         ((5 + a) + (5 - b) * (6 * a)).data, ((5 + a_) + (5 - b_) * (6 * a_)).item()
     )
+    assert np.allclose(a.relu().data, (a_.relu()).item())
