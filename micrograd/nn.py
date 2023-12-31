@@ -12,15 +12,19 @@ class Module:
 
 
 class Neuron(Module):
-    def __init__(self, nin, nonlin=True):
+    def __init__(self, nin, act="tanh"):
         self.w = [Value(random.uniform(-1, 1)) for _ in range(nin)]
         self.b = Value(random.uniform(-1, 1))
-        self.nonlin = nonlin
+        self.act = act
 
     def __call__(self, x):
         assert len(x) == len(self.w)
         acts = sum((wi * xi for wi, xi in zip(self.w, x)), self.b)
-        return acts.relu() if self.nonlin else acts
+        if self.act == "tanh":
+            acts = acts.tanh()
+        elif self.act == "relu":
+            acts = acts.relu()
+        return acts
 
     def parameters(self):
         return self.w + [self.b]
@@ -39,11 +43,11 @@ class Layer(Module):
 
 
 class MLP(Module):
-    def __init__(self, nin, nouts):
+    def __init__(self, nin, nouts, act="tanh"):
         nouts = nouts if isinstance(nouts, list) else list(nouts)
         sizes = [nin] + nouts
         self.layers = [
-            Layer(sizes[i], sizes[i + 1], nonlin=i != len(nouts) - 1)
+            Layer(sizes[i], sizes[i + 1], act=None if i != len(nouts) - 1 else act)
             for i in range(len(nouts))
         ]
 
