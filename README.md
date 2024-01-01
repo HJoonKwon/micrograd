@@ -15,7 +15,7 @@ python -m pytest
 
 ## What I learned
 
-1) **Multivariate derivatives**. While differentiating multivariate equations with mathematical expressions is straightforward, it can be prone to errors when coding. Similar to how Andrej did not edit out his mistakes during the lecture, using them instead as teaching moments, I concur that these are common pitfalls. Below, I've included a snippet from ```engine.py``` to illustrate this point. In a step of gradient descent, grad should accumulate to encompass all gradients in a multivariate context. For more information, refer to [this article](https://en.wikipedia.org/wiki/Partial_derivative) on partial derivatives.
+1) **Multivariate derivatives**. While differentiating multivariate equations with mathematical expressions is straightforward, it can be prone to errors when coding. Similar to how Andrej did not edit out his mistakes during the lecture, using them instead as teaching moments, I concur that these are common pitfalls. Below, I've included a snippet from ```engine.py``` to illustrate this point. In a step of gradient descent, grad should accumulate to encompass all gradients in a multivariate context. For more information, refer to [this article](https://en.wikipedia.org/wiki/Chain_rule#Multivariable_case) on the chain rule for multivariate functions.
    
 ```python
 def __mul__(self, other):
